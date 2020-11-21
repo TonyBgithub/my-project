@@ -6,9 +6,10 @@ const data = {
             category:"Shirts",
             image:"/images/p1.jpg",
             price: 120,
+            countInStock: 2,
             brand:"Nike",
-            rating: 4.8,
-            numReviews:10,
+            rating: 2.5,
+            numReviews: 5,
             description: "High quality product"
         },
         {
@@ -17,9 +18,10 @@ const data = {
             category:"Shirts",
             image:"/images/p1.jpg",
             price: 80,
+            countInStock: 50,
             brand:"Nike",
             rating: 4.5,
-            numReviews:10,
+            numReviews: 3,
             description: "High quality product"
         },
         {
@@ -28,9 +30,10 @@ const data = {
             category:"Shirts",
             image:"/images/p1.jpg",
             price: 56,
+            countInStock: 0,
             brand:"Nike",
             rating: 4,
-            numReviews:10,
+            numReviews: 10,
             description: "High quality product"
         }
     ]
