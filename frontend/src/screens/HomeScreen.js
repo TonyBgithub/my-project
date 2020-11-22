@@ -1,45 +1,42 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+// import axios from "axios";
 //Instead of fetching data from the frontend (data.js), when axios is installed, fetch data from the backend:
 // import data from "../data";
 import Product from "../components/Product";
 import LoadingBox from "../components/MessageBox";
 import MessageBox from "../components/LoadingBox";
+import { useDispatch, useSelector } from 'react-redux';
+import listProducts from "../actions/productActions";
 
 export default function HomeScreen() {
+  const dispatch = useDispatch(); //allows us to dispatch any action inside our react components.
+  //useSelector is a function from react-redux that 
+  const productList = useSelector( state => state.productList);
+  const { loading, error, products} = productList;
+  
+
+  /* ******************************************************************
+  // Code below commented out since we are using the redux store instead of hooks inside components.
   const [products, setProducts] = useState([]);
 
   //Loading while fetching data:
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(false); 
+  ****************************************************************** */
 
+  
   //useEffect is a hook that tells React that your components needs to do something after Render.
   //By default, it runs both after the first render and after every update.
   //useEffect accepts a function and an array. The array is the list of dependencies. Here there is none.
 
   useEffect(() => {
-    //since there is no dependency, useEffect will run only one time. That is what we want here.
-    //We are sending an ajax request. Ajax is async.
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        //transform the array in the backend into { data } in the frontend.
-        //then we update the state with the data we're getting from the backend.
-        const { data } = await axios.get("/api/products");
-        setLoading(false);
-        setProducts(data);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-    fetchData();
+    dispatch(listProducts()) //getting data from backend through an action instead of writing the request here using axios.
   }, []);
 
   //We are showing the home screen so we imported all the cards inside the main tag
   return (
     <div>
-      {/* depending on state (loading and error) change what is displayed*/}
+      {/* depending on state (loading and error) change what is rendered*/}
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
