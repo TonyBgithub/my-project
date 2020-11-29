@@ -5,12 +5,14 @@ import React, { useEffect } from "react";
 import Product from "../components/Product";
 import LoadingBox from "../components/MessageBox";
 import MessageBox from "../components/LoadingBox";
+
 import { useDispatch, useSelector } from 'react-redux';
-import listProducts from "../actions/productActions";
+import { listProducts } from "../actions/productActions";
 
 export default function HomeScreen() {
   const dispatch = useDispatch(); //allows us to dispatch any action inside our react components.
-  //useSelector is a function from react-redux that 
+  
+  //useSelector takes in a function argument that returns the part of the state that you want.
   const productList = useSelector( state => state.productList);
   const { loading, error, products} = productList;
   
@@ -30,24 +32,18 @@ export default function HomeScreen() {
   //useEffect accepts a function and an array. The array is the list of dependencies. Here there is none.
 
   useEffect(() => {
-    dispatch(listProducts()) //getting data from backend through an action instead of writing the request here using axios.
-  }, []);
+    dispatch(listProducts()) 
+  }, [dispatch]);
 
-  //We are showing the home screen so we imported all the cards inside the main tag
   return (
     <div>
-      {/* depending on state (loading and error) change what is rendered*/}
+      {/* depending on state (loading and error) change what is rendered. Pass state as props to other components..*/}
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div className="row center">
-          {/* once backend array is transformed into data, remove "data." before products.map because we are using state 
-      Remember to restart server after this, because we added the proxy in package.json.
-      Then open browser, inspect page and go to Network tab. Click products on the left panel and go to the Preview tab. 
-      The array of products should be there.
-      */}
           {products.map((product) => (
             <Product key={product._id} product={product} />
           ))}

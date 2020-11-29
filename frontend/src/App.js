@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import ProductScreen from "./screens/ProductScreen";
 import HomeScreen from "./screens/HomeScreen";
+import CartScreen from "./screens/CartScreen";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       </div>
     </header>
     <main>
+    <Route path="/cart/:id?" component={CartScreen} /> {/* Question mark indicates that it is optional. We want the user to be able to go to the shopping cart screen without adding a new item to the cart. */}
     <Route path="/" component={HomeScreen} exact /> {/* Only when the route is equal to exactly /*/}
     <Route path="/product/:id" component={ProductScreen} /> {/* colon id contains the id of your product */}
     </main>
