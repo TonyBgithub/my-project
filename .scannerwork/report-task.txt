@@ -2,5 +2,5 @@ projectKey=TonyBgithub_my-project_AYNWgxcjPQtWT26-kx71
 serverUrl=https://tonyb.eu.ngrok.io
 serverVersion=9.7.0.60058
 dashboardUrl=https://tonyb.eu.ngrok.io/dashboard?id=TonyBgithub_my-project_AYNWgxcjPQtWT26-kx71
-ceTaskId=AYNX_dHZPQtWT26-kx8K
-ceTaskUrl=https://tonyb.eu.ngrok.io/api/ce/task?id=AYNX_dHZPQtWT26-kx8K
+ceTaskId=AYNX_vgePQtWT26-kx8L
+ceTaskUrl=https://tonyb.eu.ngrok.io/api/ce/task?id=AYNX_vgePQtWT26-kx8L
